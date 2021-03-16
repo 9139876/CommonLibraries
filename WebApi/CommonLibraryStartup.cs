@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CommonLibraries.Config;
+using CommonLibraries.RemoteCall.Extensions;
 using CommonLibraries.WebApiPack.Extensions;
-using Hermes.RemoteCall.Extensions;
 using Microsoft.OpenApi.Models;
 
 namespace CommonLibraries.WebApiPack

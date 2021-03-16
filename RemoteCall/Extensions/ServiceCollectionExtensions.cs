@@ -2,7 +2,7 @@
 using CommonLibraries.RemoteCall.Services.Implementation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hermes.RemoteCall.Extensions
+namespace CommonLibraries.RemoteCall.Extensions
 {
     public static class ServiceCollectionExtensions
     {
