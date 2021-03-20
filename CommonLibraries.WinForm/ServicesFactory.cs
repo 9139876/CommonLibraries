@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Reflection.Metadata;
 using CommonLibraries.Core.Extensions;
 using CommonLibraries.RemoteCall.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CommonLibraries.WinForm
+namespace CommonLibraries.ClientApplication
 {
-    public static class Factory
+    public static class ServicesFactory
     {
         private static readonly ServiceCollection _services;
 
         private static IServiceProvider _serviceProvider;
 
-        static Factory()
+        static ServicesFactory()
         {
             _services = new ServiceCollection();
             _services.RegisterRemoteCall();

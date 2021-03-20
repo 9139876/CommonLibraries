@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.BackgroundW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.Graal", "CommonLibraries.Graal\CommonLibraries.Graal.csproj", "{8A1B435A-6DD8-4B17-B882-6D5DB34D6395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibraries.WinForm", "CommonLibraries.WinForm\CommonLibraries.WinForm.csproj", "{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.ClientApplication", "CommonLibraries.WinForm\CommonLibraries.ClientApplication.csproj", "{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
