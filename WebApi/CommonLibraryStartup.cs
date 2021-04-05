@@ -41,6 +41,7 @@ namespace CommonLibraries.WebApiPack
             //services.RegisterDateTimeService();
             //services.AddCaching();
             //services.AddSingleton(Configuration);
+            services.AddControllers().AddNewtonsoftJson();
             services.RegisterRemoteCall();
 
             //if (SwaggerXmlCommentsFileNameList != null && SwaggerXmlCommentsFileNameList.Any())
