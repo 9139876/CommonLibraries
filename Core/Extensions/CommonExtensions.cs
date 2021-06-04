@@ -11,7 +11,8 @@ namespace CommonLibraries.Core.Extensions
         {
             Converters = new List<JsonConverter> { new StringEnumConverter() },
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            NullValueHandling = NullValueHandling.Ignore
+            NullValueHandling = NullValueHandling.Ignore,
+            Formatting = Formatting.Indented
         };
 
         private static string Compose(string paramName, object @object)
@@ -37,7 +38,7 @@ namespace CommonLibraries.Core.Extensions
         public static string Serialize(this object value)
         {
             var jsonSerializerSettings = _jsonSerializerDefaultSettings;
-            if(IfContainAbstractMembers(value.GetType()))
+            if (IfContainAbstractMembers(value.GetType()))
             {
                 jsonSerializerSettings.TypeNameHandling = TypeNameHandling.All;
             }
