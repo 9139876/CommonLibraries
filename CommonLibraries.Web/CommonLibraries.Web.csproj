@@ -4,9 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>CommonLibraries.Web</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
-    <FileVersion>1.0.5.0</FileVersion>
-    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,9 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Config\CommonLibraries.Config.csproj" />
-    <ProjectReference Include="..\Core\CommonLibraries.Core.csproj" />
-    <ProjectReference Include="..\RemoteCall\CommonLibraries.RemoteCall.csproj" />
+    <ProjectReference Include="..\CommonLibraries.Config\CommonLibraries.Config.csproj" />
+    <ProjectReference Include="..\CommonLibraries.Core\CommonLibraries.Core.csproj" />
+    <ProjectReference Include="..\CommonLibraries.RemoteCall\CommonLibraries.RemoteCall.csproj" />
   </ItemGroup>
 
   <Target Name="CopyPackage" AfterTargets="Pack">

@@ -82,7 +82,7 @@ namespace CommonLibraries.Web
 
             app.UseMvc();
 
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
 
             app.UseSwagger();
 

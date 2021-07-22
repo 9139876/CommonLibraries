@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\CommonLibraries.Core.csproj" />
-    <ProjectReference Include="..\RemoteCall\CommonLibraries.RemoteCall.csproj" />
+    <ProjectReference Include="..\CommonLibraries.Core\CommonLibraries.Core.csproj" />
+    <ProjectReference Include="..\CommonLibraries.RemoteCall\CommonLibraries.RemoteCall.csproj" />
   </ItemGroup>
 
   <Target Name="CopyPackage" AfterTargets="Pack">
