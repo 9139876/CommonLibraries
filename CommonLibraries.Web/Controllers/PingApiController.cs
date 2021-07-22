@@ -5,10 +5,10 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using CommonLibraries.Core.Extensions;
-using CommonLibraries.WebApiPack.Models;
+using CommonLibraries.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CommonLibraries.WebApiPack.Controllers
+namespace CommonLibraries.Web.Controllers
 {
     public class PingApiController : Controller
     {

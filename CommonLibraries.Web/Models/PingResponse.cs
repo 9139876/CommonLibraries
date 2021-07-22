@@ -1,4 +1,4 @@
-﻿namespace CommonLibraries.WebApiPack.Models
+﻿namespace CommonLibraries.Web.Models
 {
     public class PingResponse
     {

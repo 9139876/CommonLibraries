@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
-namespace CommonLibraries.WebApiPack
+namespace CommonLibraries.Web
 {
     public class AssemblyInfo
     {

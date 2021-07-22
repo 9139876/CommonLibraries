@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
 
-namespace CommonLibraries.WebApiPack
+namespace CommonLibraries.Web
 {
     public static class ProgramUtils
     {

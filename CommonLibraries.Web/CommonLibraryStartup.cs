@@ -6,12 +6,15 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using CommonLibraries.Config;
 using CommonLibraries.RemoteCall.Extensions;
-using CommonLibraries.WebApiPack.Extensions;
+using CommonLibraries.Web.Extensions;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
-namespace CommonLibraries.WebApiPack
+namespace CommonLibraries.Web
 {
     public abstract class CommonLibraryStartup
     {
@@ -38,30 +41,11 @@ namespace CommonLibraries.WebApiPack
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.RegisterDateTimeService();
-            //services.AddCaching();
-            //services.AddSingleton(Configuration);
+            services.AddSingleton(Configuration);
             services.AddControllers().AddNewtonsoftJson();
             services.RegisterRemoteCall();
 
-            //if (SwaggerXmlCommentsFileNameList != null && SwaggerXmlCommentsFileNameList.Any())
-            //{
-            //    services.AddSwaggerGenWithXmlDocs(SwaggerXmlCommentsFileNameList, UseHideDocsFilter, SwaggerInfo);
-            //}
-            //else
-            //{
-            //    services.AddSwaggerGenWithDocs(UseHideDocsFilter, SwaggerInfo);
-            //}
-
-
-            //services.AddMvc()
-            //        .AddJsonOptions(options =>
-            //        {
-            //            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            //            options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-            //            options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-            //        });
-
+            services.AddMvc();
 
             services.AddControllers();
 
@@ -83,15 +67,20 @@ namespace CommonLibraries.WebApiPack
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            ConfigureApplication(app, env);
+        }
+
+        protected void ConfigureWebApi(IApplicationBuilder app, IWebHostEnvironment env)
+        {
             //app.UseCommonLibraryLoggingVariables();
 
             app.UserApiErrorHandling();
 
             //app.UseCommonLibraryExceptionsHandling();
 
-            //ConfigurePipelineAfterExceptionsHandling(app);
+            ConfigurePipelineAfterExceptionsHandling(app);
 
-            //app.UseMvc();
+            app.UseMvc();
 
             //app.UseStaticFiles();
 
@@ -113,10 +102,35 @@ namespace CommonLibraries.WebApiPack
             ConfigurePipelineAfterMvc(app);
         }
 
+        protected void ConfigureWebApp(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UserApiErrorHandling();
+
+            ConfigurePipelineAfterExceptionsHandling(app);
+
+            app.UseRouting();
+
+            ConfigureRoutes(app);
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API v1");
+                c.RoutePrefix = "swagger";
+            });
+
+            ConfigurePipelineAfterMvc(app);
+        }
+
+        protected abstract void ConfigureApplication(IApplicationBuilder app, IWebHostEnvironment env);
+
         protected abstract void ConfigureServiceCollections(IServiceCollection services);
 
         protected abstract void ConfigurePipelineAfterExceptionsHandling(IApplicationBuilder app);
 
         protected abstract void ConfigurePipelineAfterMvc(IApplicationBuilder app);
+
+        protected abstract void ConfigureRoutes(IApplicationBuilder app);
     }
 }

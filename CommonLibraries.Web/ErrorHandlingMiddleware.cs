@@ -5,7 +5,7 @@ using CommonLibraries.Core.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace CommonLibraries.WebApiPack
+namespace CommonLibraries.Web
 {
     public class ErrorHandlingMiddleware
     {

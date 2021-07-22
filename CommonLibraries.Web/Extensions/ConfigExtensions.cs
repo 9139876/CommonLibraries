@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CommonLibraries.Web;
+using Microsoft.AspNetCore.Builder;
 
-namespace CommonLibraries.WebApiPack.Extensions
+namespace CommonLibraries.Web.Extensions
 {
     public static class ConfigExtensions
     {
