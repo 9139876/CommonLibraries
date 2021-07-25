@@ -80,9 +80,7 @@ namespace CommonLibraries.Web
 
             ConfigurePipelineAfterExceptionsHandling(app);
 
-            app.UseMvc();
-
-            app.UseStaticFiles();
+            //app.UseMvc();
 
             app.UseSwagger();
 
@@ -107,6 +105,8 @@ namespace CommonLibraries.Web
             app.UserApiErrorHandling();
 
             ConfigurePipelineAfterExceptionsHandling(app);
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
