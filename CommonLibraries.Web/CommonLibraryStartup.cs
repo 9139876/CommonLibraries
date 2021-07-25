@@ -61,6 +61,8 @@ namespace CommonLibraries.Web
                 });
             });
 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
             ConfigureServiceCollections(services);
         }
 
