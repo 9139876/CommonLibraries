@@ -72,25 +72,22 @@ namespace CommonLibraries.Web
             ConfigureApplication(app, env);
         }
 
-        protected void ConfigureWebApi(IApplicationBuilder app, IWebHostEnvironment env)
+        protected void ConfigureWebApi(IApplicationBuilder app, IWebHostEnvironment env, bool useSwagger = true)
         {
-            //app.UseCommonLibraryLoggingVariables();
-
             app.UserApiErrorHandling();
 
-            //app.UseCommonLibraryExceptionsHandling();
-
             ConfigurePipelineAfterExceptionsHandling(app);
-
-            //app.UseMvc();
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
+            
+            if (useSwagger == true)
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API v1");
-                c.RoutePrefix = string.Empty;
-            });
+                app.UseSwagger();
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API v1");
+                    c.RoutePrefix = "swagger";
+                });
+            }
 
             app.UseRouting();
 
@@ -102,7 +99,7 @@ namespace CommonLibraries.Web
             ConfigurePipelineAfterMvc(app);
         }
 
-        protected void ConfigureWebApp(IApplicationBuilder app, IWebHostEnvironment env)
+        protected void ConfigureWebApp(IApplicationBuilder app, IWebHostEnvironment env, bool useSwagger = true)
         {
             app.UserApiErrorHandling();
 
@@ -114,13 +111,42 @@ namespace CommonLibraries.Web
 
             ConfigureRoutes(app);
 
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
+            if (useSwagger == true)
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API v1");
-                c.RoutePrefix = "swagger";
-            });
+                app.UseSwagger();
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API v1");
+                    c.RoutePrefix = "swagger";
+                });
+            }
+
+            ConfigurePipelineAfterMvc(app);
+        }
+
+        protected void ConfigureWebAppStaticFiles(IApplicationBuilder app, IWebHostEnvironment env, bool useSwagger = true)
+        {
+            app.UserApiErrorHandling();
+
+            ConfigurePipelineAfterExceptionsHandling(app);
+
+            app.UseFileServer();
+
+            app.UseRouting();
+
+            ConfigureRoutes(app);
+
+            if(useSwagger == true)
+            {
+                app.UseSwagger();
+
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API v1");
+                    c.RoutePrefix = "swagger";
+                });
+            }
 
             ConfigurePipelineAfterMvc(app);
         }
