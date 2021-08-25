@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -18,6 +19,26 @@ namespace CommonLibraries.Core.Extensions
         private static string Compose(string paramName, object @object)
         {
             return @object == null ? paramName : $"{paramName} for object:{JsonConvert.SerializeObject(@object)}";
+        }
+
+        private static bool IfContainAbstractMembers(Type type)
+        {
+            foreach (var property in type.GetProperties())
+            {
+                var propertyType = property.PropertyType;
+
+                if (propertyType.IsAbstract || propertyType.IsInterface)
+                {
+                    return true;
+                }
+
+                if (IfContainAbstractMembers(propertyType))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static void RequiredNotNull(this object value, string paramName, object @object = null)
@@ -57,24 +78,32 @@ namespace CommonLibraries.Core.Extensions
             return JsonConvert.DeserializeObject<T>(value, jsonSerializerSettings);
         }
 
-        private static bool IfContainAbstractMembers(Type type)
+        public static List<KeyValuePair<string, string>> ToPropertiesCollection(this object obj)
         {
-            foreach (var property in type.GetProperties())
+            return obj
+                .GetType()
+                .GetProperties()
+                .Select(x => new KeyValuePair<string, string>(x.Name, x.GetValue(obj)?.ToString()))
+                .ToList();
+        }
+
+        public static T ToModel<T>(this List<KeyValuePair<string, string>> propertiesCollection)
+        {
+            var instance = (T)Activator.CreateInstance(typeof(T));
+
+            var instanceProperties = instance.GetType().GetProperties();
+
+            foreach (var property in propertiesCollection)
             {
-                var propertyType = property.PropertyType;
+                var currentProperty = instanceProperties.SingleOrDefault(x => x.Name == property.Key);
 
-                if (propertyType.IsAbstract || propertyType.IsInterface)
+                if (currentProperty != null)
                 {
-                    return true;
-                }
-
-                if (IfContainAbstractMembers(propertyType))
-                {
-                    return true;
+                    currentProperty.SetValue(instance, property.Value);
                 }
             }
 
-            return false;
+            return instance;
         }
     }
 }

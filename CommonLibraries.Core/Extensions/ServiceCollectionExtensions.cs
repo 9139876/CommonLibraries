@@ -9,7 +9,7 @@ namespace CommonLibraries.Core.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        private static readonly List<string> ServiceAndRepositoryPostfix = new List<string> { "Service", "Repository" };
+        private static readonly List<string> _serviceAndRepositoryPostfix = new List<string> { "Service", "Repository" };
 
         public static void RegisterClasses(this IServiceCollection services, Assembly assembly, List<string> classesPostfix, ServiceLifetime serviceLifetime, bool optional)
         {
@@ -56,7 +56,7 @@ namespace CommonLibraries.Core.Extensions
         public static void RegisterCurrentAssemblyServiceAndRepository(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Scoped, bool optional = false)
         {
             RegisterCurrentAssemblyClasses(services: services,
-                classesPostfix: ServiceAndRepositoryPostfix,
+                classesPostfix: _serviceAndRepositoryPostfix,
                 serviceLifetime: serviceLifetime,
                 optional: optional);
         }
@@ -88,7 +88,7 @@ namespace CommonLibraries.Core.Extensions
         {
             RegisterClasses(services: services,
                 assembly: typeof(T).Assembly,
-                classesPostfix: ServiceAndRepositoryPostfix,
+                classesPostfix: _serviceAndRepositoryPostfix,
                 serviceLifetime: serviceLifetime,
                 optional: optional);
         }
@@ -97,7 +97,7 @@ namespace CommonLibraries.Core.Extensions
         {
             RegisterAssemblyClasses(services: services,
                 assemblyName: assemblyName,
-                classesPostfix: ServiceAndRepositoryPostfix,
+                classesPostfix: _serviceAndRepositoryPostfix,
                 serviceLifetime: serviceLifetime,
                 optional: optional);
         }
