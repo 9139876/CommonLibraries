@@ -32,7 +32,7 @@ namespace CommonLibraries.Core.Extensions
                     return true;
                 }
 
-                if (IfContainAbstractMembers(propertyType))
+                if (propertyType.Name != "DateTime" && IfContainAbstractMembers(propertyType)) // DateTime содержит в себе свойство DateTime => бесконечная рекурсия
                 {
                     return true;
                 }
