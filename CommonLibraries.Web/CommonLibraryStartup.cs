@@ -24,15 +24,18 @@ namespace CommonLibraries.Web
 
         protected List<string> SwaggerXmlCommentsFileNameList { get; set; } = new List<string>();
 
+        protected abstract bool _loadFromConfigService { get; }
+        protected abstract bool _reloadAppSettingsOnChange { get; }
+        protected abstract bool _requiredConfigService { get; }
 
         #endregion
 
         #region ctor
 
-        protected CommonLibraryStartup(bool reloadAppSettingsOnChange = true)
+        protected CommonLibraryStartup()
         {
             Configuration = new ConfigurationBuilder()
-                .LoadConfiguration(reloadAppSettingsOnChange)
+                .LoadConfiguration(loadFromConfigService:_loadFromConfigService, reloadAppSettingsOnChange: _reloadAppSettingsOnChange, requiredConfigService: _requiredConfigService)
                 .Build();
         }
 
@@ -77,7 +80,7 @@ namespace CommonLibraries.Web
             app.UserApiErrorHandling();
 
             ConfigurePipelineAfterExceptionsHandling(app);
-            
+
             if (useSwagger == true)
             {
                 app.UseSwagger();
@@ -85,7 +88,7 @@ namespace CommonLibraries.Web
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API v1");
-                    c.RoutePrefix = "swagger";
+                    c.RoutePrefix = string.Empty;
                 });
             }
 
@@ -137,7 +140,7 @@ namespace CommonLibraries.Web
 
             ConfigureRoutes(app);
 
-            if(useSwagger == true)
+            if (useSwagger == true)
             {
                 app.UseSwagger();
 

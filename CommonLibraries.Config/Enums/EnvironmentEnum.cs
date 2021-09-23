@@ -2,7 +2,7 @@
 {
     public enum EnvironmentEnum
     {
-        Debug = 1,
-        Release = 2
+        Local = 1,
+        RemoteServer = 2
     }
 }

@@ -45,7 +45,7 @@ namespace CommonLibraries.EF
                     sqlServerOptions.EnableRetryOnFailure(retryNumber, retryDelay, null);
                 });
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-                
+
             });
 
             services.AddDbContext<TContextService, TContextImplementation>(serviceLifetime);
@@ -64,10 +64,32 @@ namespace CommonLibraries.EF
             {
                 if (loggerFactory != null) { options.UseLoggerFactory(loggerFactory); }
 
-                options.UseSqlServer(GetConnectionString(), sqlServerOptions => 
+                options.UseSqlServer(GetConnectionString(), sqlServerOptions =>
                 {
                     sqlServerOptions.CommandTimeout(commandTimeout);
                 });
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
+
+            services.AddDbContext<TContextService, TContextImplementation>(serviceLifetime);
+        }
+
+        public static void RegisterPostgreSQLDbContext<TContextService, TContextImplementation>(
+            this IServiceCollection services,
+            Func<string> GetConnectionString,
+            ServiceLifetime serviceLifetime = ServiceLifetime.Scoped,
+            ILoggerFactory loggerFactory = null)
+                where TContextService : class
+                where TContextImplementation : DbContext, TContextService
+        {
+            services.AddDbContext<TContextImplementation>(options =>
+            {
+                if (loggerFactory != null)
+                {
+                    options.UseLoggerFactory(loggerFactory);
+                }
+
+                options.UseNpgsql(GetConnectionString());
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 

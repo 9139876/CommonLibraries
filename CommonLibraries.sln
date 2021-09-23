@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.Graal", "Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.ClientApplication", "CommonLibraries.WinForm\CommonLibraries.ClientApplication.csproj", "{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManualTests", "ManualTests\ManualTests.csproj", "{49A4D284-51DE-401C-879D-D36C342760FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A4D284-51DE-401C-879D-D36C342760FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A4D284-51DE-401C-879D-D36C342760FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A4D284-51DE-401C-879D-D36C342760FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A4D284-51DE-401C-879D-D36C342760FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
