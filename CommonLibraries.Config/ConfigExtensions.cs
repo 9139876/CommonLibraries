@@ -12,14 +12,14 @@ namespace CommonLibraries.Config
     public static class ConfigExtensions
     {
         private static readonly string _configServiceUrl = "http://configservice.api/api/get-config";
-        
+
         public static IConfigurationBuilder LoadConfiguration(this IConfigurationBuilder builder, bool loadFromConfigService, bool reloadAppSettingsOnChange, bool requiredConfigService)
         {
             var configurationBuilder = builder as ConfigurationBuilder ?? throw new InvalidCastException("IConfigurationBuilder builder is not a ConfigurationBuilder");
 
-            var environmentConfigParameters = new EnvironmentConfigParameters() { Environment = GetEnvironment() };
+            var environment = GetEnvironment();
 
-            var configs = new Dictionary<string, string>() { { "EnvironmentConfigParameters", environmentConfigParameters.Serialize() } };
+            var configs = new Dictionary<string, string>() { { "EnvironmentLocation", environment.ToString() } };
 
             if (loadFromConfigService)
             {
@@ -28,7 +28,7 @@ namespace CommonLibraries.Config
                     var configRequest = new GetConfigRequest()
                     {
                         Application = Assembly.GetEntryAssembly().GetName().Name,
-                        Environment = environmentConfigParameters.Environment
+                        Environment = environment
                     };
 
                     var configResponse = GetConfigRaw(configRequest);
@@ -51,7 +51,7 @@ namespace CommonLibraries.Config
                     }
                     else
                     {
-                        configs = new Dictionary<string, string>() { { "EnvironmentConfigParameters", environmentConfigParameters.Serialize() } };
+                        configs = new Dictionary<string, string>() { { "EnvironmentLocation", environment.ToString() } };
                     }
                 }
             }

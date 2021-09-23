@@ -7,23 +7,25 @@ using System.Threading.Tasks;
 using CommonLibraries.Core.Extensions;
 using CommonLibraries.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace CommonLibraries.Web.Controllers
 {
     public class PingApiController : Controller
     {
+        private readonly IConfiguration _configuration;
+
+        public PingApiController(
+            IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         [HttpGet]
         [Route("api/ping/get")]
         public PingResponse Get()
         {
-            var watch = new Stopwatch();
-            watch.Start();
-
             var ret = new PingResponse { IsSuccess = true };
-
-            watch.Stop();
-
-            ret.TimeTakenMilliseconds = watch.ElapsedMilliseconds;
 
             return ret;
         }
@@ -45,7 +47,8 @@ namespace CommonLibraries.Web.Controllers
             {
                 AppName = assemblyInfo.Title,
                 MachineName = Environment.MachineName,
-                Version = assemblyInfo.Version
+                Version = assemblyInfo.Version,
+                EnvironmentLocation = _configuration.GetSection("EnvironmentLocation").Value
             };
 
             return ret;
@@ -69,7 +72,9 @@ namespace CommonLibraries.Web.Controllers
         [Route("api/ping/get_config")]
         public string GetConfig()
         {
-            return CommonLibraryStartup.Configuration.GetChildren().Serialize();
+            var configurationValues = _configuration.AsEnumerable().Where(x => x.Value != null).Serialize();
+
+            return configurationValues;
         }
     }
 }
