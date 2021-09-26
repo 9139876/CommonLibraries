@@ -18,8 +18,8 @@ namespace CommonLibraries.BackgroundWorker.Controllers
             _serviceProvider = serviceProvider;
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpPost]
-        [Microsoft.AspNetCore.Mvc.Route("api/backgroundworker/ping")]
+        [HttpPost]
+        [Route("api/backgroundworker/ping")]
         public virtual PingApiResponse Ping()
         {
             var ret = new PingApiResponse();
