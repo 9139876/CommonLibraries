@@ -56,21 +56,21 @@ namespace CommonLibraries.Graal.Extensions
             switch (timeFrame)
             {
                 case (TimeFrameEnum.min1):
-                    return diff.Minutes;
+                    return (int)diff.TotalMinutes;
                 case (TimeFrameEnum.min4):
-                    return (int)Math.Ceiling((float)diff.Minutes / 4);
+                    return (int)Math.Ceiling((float)diff.TotalMinutes / 4);
                 case (TimeFrameEnum.H1):
-                    return diff.Hours;
+                    return (int)diff.TotalHours;
                 case (TimeFrameEnum.D1):
-                    return diff.Days;
+                    return (int)diff.TotalDays;
                 case (TimeFrameEnum.W1):
-                    return (int)Math.Ceiling((float)diff.Days / 7);
+                    return (int)Math.Ceiling((float)diff.TotalDays / 7);
                 case (TimeFrameEnum.M1):
-                    return (int)Math.Ceiling((float)diff.Days / 30);
+                    return (int)Math.Ceiling((float)diff.TotalDays / 30);
                 case (TimeFrameEnum.Seasonly):
-                    return (int)Math.Ceiling((float)diff.Days / 120);
+                    return (int)Math.Ceiling((float)diff.TotalDays / 120);
                 case (TimeFrameEnum.Y1):
-                    return (int)Math.Ceiling((float)diff.Days / 365);
+                    return (int)Math.Ceiling((float)diff.TotalDays / 365);
 
                 default:
                     throw new ArgumentException($"Неподходящий таймфрейм - {timeFrame}", nameof(timeFrame));

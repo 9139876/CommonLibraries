@@ -83,7 +83,7 @@ namespace CommonLibraries.Web
 
         protected void ConfigureWebApi(IApplicationBuilder app, IWebHostEnvironment env, bool useSwagger = true)
         {
-            app.UserApiErrorHandling();
+            app.UseErrorHandling();
 
             ConfigurePipelineAfterExceptionsHandling(app);
 
@@ -110,7 +110,7 @@ namespace CommonLibraries.Web
 
         protected void ConfigureWebApp(IApplicationBuilder app, IWebHostEnvironment env, bool useSwagger = true)
         {
-            app.UserApiErrorHandling();
+            app.UseErrorHandling();
 
             ConfigurePipelineAfterExceptionsHandling(app);
 
@@ -136,7 +136,7 @@ namespace CommonLibraries.Web
 
         protected void ConfigureWebAppStaticFiles(IApplicationBuilder app, IWebHostEnvironment env, bool useSwagger = true)
         {
-            app.UserApiErrorHandling();
+            app.UseErrorHandling();
 
             ConfigurePipelineAfterExceptionsHandling(app);
 

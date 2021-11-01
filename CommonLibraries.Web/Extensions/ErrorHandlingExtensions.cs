@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Builder;
 
 namespace CommonLibraries.Web.Extensions
 {
-    public static class ConfigExtensions
+    public static class ErrorHandlingExtensions
     {
-        public static void UserApiErrorHandling(this IApplicationBuilder app)
+        public static void UseErrorHandling(this IApplicationBuilder app)
         {
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
         }
