@@ -29,6 +29,20 @@ namespace CommonLibraries.ClientApplication
             _services.AddTransient<TInterface, TClass>();
         }
 
+        public static void AddScopedService<TInterface, TClass>()
+            where TInterface : class
+            where TClass : class, TInterface
+        {
+            _services.AddScoped<TInterface, TClass>();
+        }
+
+        public static void AddSingletonService<TInterface, TClass>()
+            where TInterface : class
+            where TClass : class, TInterface
+        {
+            _services.AddSingleton<TInterface, TClass>();
+        }
+
         public static void BuildServiceProvider()
         {
             _serviceProvider = _services.BuildServiceProvider();

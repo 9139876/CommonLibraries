@@ -2,17 +2,14 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text.Json.Serialization;
 using CommonLibraries.Config;
 using CommonLibraries.RemoteCall.Extensions;
 using CommonLibraries.Web.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace CommonLibraries.Web
 {
@@ -28,6 +25,8 @@ namespace CommonLibraries.Web
         protected abstract bool _reloadAppSettingsOnChange { get; }
         protected abstract bool _requiredConfigService { get; }
 
+        protected abstract bool _allowCORS { get; }
+
         #endregion
 
         #region ctor
@@ -35,7 +34,7 @@ namespace CommonLibraries.Web
         protected CommonLibraryStartup()
         {
             Configuration = new ConfigurationBuilder()
-                .LoadConfiguration(loadFromConfigService:_loadFromConfigService, reloadAppSettingsOnChange: _reloadAppSettingsOnChange, requiredConfigService: _requiredConfigService)
+                .LoadConfiguration(loadFromConfigService: _loadFromConfigService, reloadAppSettingsOnChange: _reloadAppSettingsOnChange, requiredConfigService: _requiredConfigService)
                 .Build();
         }
 
@@ -78,6 +77,11 @@ namespace CommonLibraries.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (_allowCORS)
+            {
+                app.UseCorsMiddleware();
+            }
+
             ConfigureApplication(app, env);
         }
 
