@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CommonLibraries.Config\CommonLibraries.Config.csproj" />
-    <ProjectReference Include="..\CommonLibraries.Graal\CommonLibraries.Graal.csproj" />
   </ItemGroup>
 
 </Project>

@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.RemoteCall"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.BackgroundWorker", "CommonLibraries.BackgroundWorker\CommonLibraries.BackgroundWorker.csproj", "{5EBF830C-AA17-4C94-A08A-B9D1408C67E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.Graal", "CommonLibraries.Graal\CommonLibraries.Graal.csproj", "{8A1B435A-6DD8-4B17-B882-6D5DB34D6395}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibraries.ClientApplication", "CommonLibraries.WinForm\CommonLibraries.ClientApplication.csproj", "{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManualTests", "ManualTests\ManualTests.csproj", "{49A4D284-51DE-401C-879D-D36C342760FE}"
@@ -25,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{50
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{99124E16-1705-4D4F-A887-8331A339CBD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{20C54B93-EDDB-4F60-8D3E-5D5C982E5F88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{20C54B93-EDDB-4F60-8D3E-5D5C982E5F88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +55,6 @@ Global
 		{5EBF830C-AA17-4C94-A08A-B9D1408C67E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EBF830C-AA17-4C94-A08A-B9D1408C67E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EBF830C-AA17-4C94-A08A-B9D1408C67E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A1B435A-6DD8-4B17-B882-6D5DB34D6395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A1B435A-6DD8-4B17-B882-6D5DB34D6395}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A1B435A-6DD8-4B17-B882-6D5DB34D6395}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A1B435A-6DD8-4B17-B882-6D5DB34D6395}.Release|Any CPU.Build.0 = Release|Any CPU
 		{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -84,7 +78,6 @@ Global
 		{6833F0FA-0265-417E-8004-C26206F4F1FC} = {99124E16-1705-4D4F-A887-8331A339CBD6}
 		{7905B565-0884-430E-B734-00F7BD43BCC4} = {99124E16-1705-4D4F-A887-8331A339CBD6}
 		{5EBF830C-AA17-4C94-A08A-B9D1408C67E3} = {99124E16-1705-4D4F-A887-8331A339CBD6}
-		{8A1B435A-6DD8-4B17-B882-6D5DB34D6395} = {99124E16-1705-4D4F-A887-8331A339CBD6}
 		{070A33C7-58C9-4BEF-987C-6B2BB17F2EA3} = {99124E16-1705-4D4F-A887-8331A339CBD6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
