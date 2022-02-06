@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommonLibraries.ClientApplication" Version="1.0.4" />
+    <PackageReference Include="CommonLibraries.Core" Version="1.0.5" />
+    <PackageReference Include="CommonLibraries.WebApiPack" Version="1.0.5" />
+    <PackageReference Include="QuotesService.Api" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -19,9 +19,9 @@ namespace CommonLibraries.Core.Extensions
             {
                 if (classesPostfix.Any(x => assemblyDefinedType.Name.EndsWith(x)))
                 {
-                    var attribute = assemblyDefinedType.GetCustomAttributes(typeof(IgnoreRegistrationAttribute), false).FirstOrDefault();
+                    var hasIgnoreRegistrationAttribute = assemblyDefinedType.GetCustomAttributes(typeof(IgnoreRegistrationAttribute), false).Any();
 
-                    if (attribute != null)
+                    if (hasIgnoreRegistrationAttribute)
                         continue;
 
                     if (assemblyDefinedType.IsClass == false)
@@ -39,8 +39,9 @@ namespace CommonLibraries.Core.Extensions
                 if (interfaceType == null && optional == false)
                     throw new InvalidOperationException($"Can't find interface = {interfaceName} for class.Name = {implementType.Name}, class.FullName = {implementType.FullName}. Add 'IgnoreRegistrationAttribute' if need ");
 
-                services.Add(new ServiceDescriptor(interfaceType, implementType,
-                        serviceLifetime));
+                var isSingleton = interfaceType.GetCustomAttributes(typeof(SingletonRegistrationAttribute), false).Any();
+
+                services.Add(new ServiceDescriptor(interfaceType, implementType, isSingleton ? ServiceLifetime.Singleton : serviceLifetime));
             }
         }
 
